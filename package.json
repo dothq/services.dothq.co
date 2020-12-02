@@ -1,0 +1,19 @@
+{
+  "name": "services.dothq.co",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/dothq/services.dothq.co",
+  "author": "EnderDev <kieran@dothq.co>",
+  "license": "MIT",
+  "scripts": {
+    "build": "tsc && node dist/index.js"
+  },
+  "dependencies": {
+    "@types/express": "^4.17.9",
+    "@types/express-rate-limit": "^5.1.0",
+    "axios": "^0.21.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "express-rate-limit": "^5.2.3"
+  }
+}
