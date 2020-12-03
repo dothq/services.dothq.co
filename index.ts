@@ -15,10 +15,17 @@ app.get("/download", (req, res) => {
     if(!req.query.product || !req.query.version || !req.query.os) return res.send("Missing parameters.");
 })
 
+app.use(function(req, res, next) {
+
+  });
+
 app.get("/ntp/unsplash", rateLimit({
     windowMs: 15 * 60 * 1000,
     max: 1
 }), (req, res) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+
     axios.get(`https://api.unsplash.com/photos/random?collections=67042424&count=50`, { headers: {
         authorization: `Client-ID ${process.env.UNSPLASH_API_KEY}`
     } })
