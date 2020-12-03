@@ -21,6 +21,7 @@ app.get("/ntp/unsplash", rateLimit({
 }), (req, res) => {
     res.header("Access-Control-Allow-Origin", "*");
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    res.header("Access-Control-Expose-Headers", "X-Attribution-Data");
 
     axios.get(`https://api.unsplash.com/photos/random?collections=67042424&count=50`, { headers: {
         authorization: `Client-ID ${process.env.UNSPLASH_API_KEY}`
