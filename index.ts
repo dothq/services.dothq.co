@@ -108,7 +108,7 @@ app.post("/feedback/send", slowDown({
 })
 
 app.get("/ntp/news-article-image/proxied/:url", (req, res) => {
-    axios.get(decodeURL(req.params.url), { responseType: "arraybuffer" })
+    axios.get(decodeURIComponent(req.params.url), { responseType: "arraybuffer" })
         .then(_ => res.end(_.data))
 });
 
