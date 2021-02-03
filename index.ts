@@ -107,6 +107,11 @@ app.post("/feedback/send", slowDown({
     .catch(resp => res.status(400).end("Error."))
 })
 
+app.get("/ntp/news-article-image/proxied/:url", (req, res) => {
+    axios.get(decodeURL(req.params.url), { responseType: "arraybuffer" })
+        .then(_ => res.end(_.data))
+});
+
 app.use((req, res, next) => {
     res.status(404)
     res.end(`No service found with that name.`)
