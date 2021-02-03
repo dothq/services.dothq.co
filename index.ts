@@ -107,9 +107,15 @@ app.post("/feedback/send", slowDown({
     .catch(resp => res.status(400).end("Error."))
 })
 
-app.get("/ntp/news-article-image/proxied/:url", (req, res) => {
-    axios.get(decodeURIComponent(req.params.url), { responseType: "arraybuffer" })
-        .then(_ => res.end(_.data))
+app.get("/ntp/news-article-image/proxied", (req, res) => {
+    if(!req.query.url) {
+        axios.get("https://i.ytimg.com/vi/yL6fMqxynR0/hqdefault.jpg", { responseType: "arraybuffer" })
+            .then(_ => res.end(_.data))
+    } else {
+        axios.get(decodeURIComponent((req.query.url as string)), { responseType: "arraybuffer" })
+            .then(_ => res.end(_.data))
+    }
+
 });
 
 app.use((req, res, next) => {
